@@ -20,7 +20,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <string.h>
-#include "TWIlib.h"
+#include "i2c_master.h"
 #include "progmem.h"
 
 // This is a 7-bit address, that gets left-shifted and bit 0
@@ -49,8 +49,16 @@
 #define ISSI_COMMANDREGISTER 0xFD
 #define ISSI_BANK_FUNCTIONREG 0x0B    // helpfully called 'page nine'
 
+#ifndef ISSI_TIMEOUT
+  #define ISSI_TIMEOUT 100
+#endif
+
+#ifndef ISSI_PERSISTENCE
+  #define ISSI_PERSISTENCE 0
+#endif
+
 // Transfer buffer for TWITransmitData()
-uint8_t g_twi_transfer_buffer[TXMAXBUFLEN];
+uint8_t g_twi_transfer_buffer[20];
 
 // These buffers match the IS31FL3731 PWM registers 0x24-0xB3.
 // Storing them like this is optimal for I2C transfers to the registers.
@@ -80,17 +88,17 @@ bool g_led_control_registers_update_required = false;
 
 void IS31FL3731_write_register( uint8_t addr, uint8_t reg, uint8_t data )
 {
-	g_twi_transfer_buffer[0] = (addr << 1) | 0x00;
-	g_twi_transfer_buffer[1] = reg;
-	g_twi_transfer_buffer[2] = data;
+	g_twi_transfer_buffer[0] = reg;
+	g_twi_transfer_buffer[1] = data;
 
-	// Set the error code to have no relevant information
-	TWIInfo.errorCode = TWI_NO_RELEVANT_INFO;
-	// Continuously attempt to transmit data until a successful transmission occurs
-	//while ( TWIInfo.errorCode != 0xFF )
-	//{
-		TWITransmitData( g_twi_transfer_buffer, 3, 0 );
-	//}
+  #if ISSI_PERSISTENCE > 0
+    for (uint8_t i = 0; i < ISSI_PERSISTENCE; i++) {
+      if (i2c_transmit(addr << 1, g_twi_transfer_buffer, 2, ISSI_TIMEOUT) == 0)
+        break;
+    }
+  #else
+    i2c_transmit(addr << 1, g_twi_transfer_buffer, 2, ISSI_TIMEOUT);
+  #endif
 }
 
 void IS31FL3731_write_pwm_buffer( uint8_t addr, uint8_t *pwm_buffer )
@@ -100,29 +108,25 @@ void IS31FL3731_write_pwm_buffer( uint8_t addr, uint8_t *pwm_buffer )
 	// transmit PWM registers in 9 transfers of 16 bytes
 	// g_twi_transfer_buffer[] is 20 bytes
 
-	// set the I2C address
-	g_twi_transfer_buffer[0] = (addr << 1) | 0x00;
-
 	// iterate over the pwm_buffer contents at 16 byte intervals
-	for ( int i = 0; i < 144; i += 16 )
-	{
+	for ( int i = 0; i < 144; i += 16 ) {
 		// set the first register, e.g. 0x24, 0x34, 0x44, etc.
-		g_twi_transfer_buffer[1] = 0x24 + i;
+		g_twi_transfer_buffer[0] = 0x24 + i;
 		// copy the data from i to i+15
 		// device will auto-increment register for data after the first byte
 		// thus this sets registers 0x24-0x33, 0x34-0x43, etc. in one transfer
-		for ( int j = 0; j < 16; j++ )
-		{
-			g_twi_transfer_buffer[2 + j] = pwm_buffer[i + j];
+		for ( int j = 0; j < 16; j++ ) {
+			g_twi_transfer_buffer[1 + j] = pwm_buffer[i + j];
 		}
 
-		// Set the error code to have no relevant information
-		TWIInfo.errorCode = TWI_NO_RELEVANT_INFO;
-		// Continuously attempt to transmit data until a successful transmission occurs
-		while ( TWIInfo.errorCode != 0xFF )
-		{
-			TWITransmitData( g_twi_transfer_buffer, 16 + 2, 0 );
-		}
+    #if ISSI_PERSISTENCE > 0
+      for (uint8_t i = 0; i < ISSI_PERSISTENCE; i++) {
+        if (i2c_transmit(addr << 1, g_twi_transfer_buffer, 17, ISSI_TIMEOUT) == 0)
+          break;
+      }
+    #else
+      i2c_transmit(addr << 1, g_twi_transfer_buffer, 17, ISSI_TIMEOUT);
+    #endif
 	}
 }
 
@@ -179,6 +183,7 @@ void IS31FL3731_init( uint8_t addr )
 	// most usage after initialization is just writing PWM buffers in bank 0
 	// as there's not much point in double-buffering
 	IS31FL3731_write_register( addr, ISSI_COMMANDREGISTER, 0 );
+
 }
 
 void IS31FL3731_set_color( int index, uint8_t red, uint8_t green, uint8_t blue )
@@ -230,7 +235,6 @@ void IS31FL3731_set_led_control_register( uint8_t index, bool red, bool green, b
 	}
 
 	g_led_control_registers_update_required = true;
-
 
 }
 

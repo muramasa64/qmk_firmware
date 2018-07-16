@@ -117,7 +117,7 @@ endif
 ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
     OPT_DEFS += -DRGB_MATRIX_ENABLE
     SRC += is31fl3731.c
-    SRC += TWIlib.c
+    SRC += i2c_master.c
     SRC += $(QUANTUM_DIR)/color.c
     SRC += $(QUANTUM_DIR)/rgb_matrix.c
     CIE1931_CURVE = yes
@@ -195,6 +195,12 @@ endif
 
 ifeq ($(strip $(USB_HID_ENABLE)), yes)
     include $(TMK_DIR)/protocol/usb_hid.mk
+endif
+
+
+ifeq ($(strip $(HD44780_ENABLE)), yes)
+    SRC += drivers/avr/hd44780.c
+	OPT_DEFS += -DHD44780_ENABLE
 endif
 
 QUANTUM_SRC:= \
