@@ -30,6 +30,7 @@ enum layer_number {
     _DVORAK,
     _LOWER,
     _RAISE,
+    _CALCS,
     _ADJUST
 };
 
@@ -38,6 +39,7 @@ enum custom_keycodes {
   DVORAK,
   LOWER,
   RAISE,
+  CALCS,
   ADJUST,
   BACKLIT,
   EISU,
@@ -67,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  |  '   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  |      |      |   N  |   M  |   ,  |   .  |   /  | `    |
+   * | Shift|   Z  |   X  |   C  |   V  |   B  |Calcs|      |   N  |   M  |   ,  |   .  |   /  | `    |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |Adjust|      | Alt  | GUI  | EISU |Lower |Raise |Space |Raise | KANA | GUI  | Alt  |      |Enter |
    * `-------------------------------------------------------------------------------------------------'
@@ -76,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4, KC_5,                          KC_6,  KC_7, KC_8,    KC_9,    KC_0,    KC_BSPC, \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R, KC_T,                          KC_Y,  KC_U, KC_I,    KC_O,    KC_P,    KC_LBRC, \
       KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F, KC_G,                          KC_H,  KC_J, KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V, KC_B,  XXXXXXX, XXXXXXX,       KC_N,  KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_GRV , \
+      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V, KC_B,  CALCS,  XXXXXXX,       KC_N,  KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_GRV , \
       ADJUST,  XXXXXXX, KC_LALT, KC_LGUI, EISU, LOWER, RAISE,   SFT_T(KC_SPC), RAISE, KANA, KC_RGUI, KC_RALT, XXXXXXX, KC_ENT \
       ),
 
@@ -88,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | Ctrl |   A  |   O  |   E  |   U  |   I  |             |   D  |   H  |   T  |   N  |   S  |  -   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Shift|   ;  |   Q  |   J  |   K  |   X  |      |      |   B  |   M  |   W  |   V  |   Z  | `    |
+   * | Shift|   ;  |   Q  |   J  |   K  |   X  |CALCS|      |   B  |   M  |   W  |   V  |   Z  | `    |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |Adjust|      | Alt  | GUI  | EISU |Lower |Raise |Space |Raise | KANA | GUI  | Alt  |Lower |Enter |
    * `-------------------------------------------------------------------------------------------------'
@@ -97,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4, KC_5,                          KC_6,  KC_7, KC_8,    KC_9,    KC_0,  KC_BSPC, \
       KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P, KC_Y,                          KC_F,  KC_G, KC_C,    KC_R,    KC_L,  KC_SLSH, \
       KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U, KC_I,                          KC_D,  KC_H, KC_T,    KC_N,    KC_S,  KC_MINS, \
-      KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K, KC_X,  XXXXXXX, XXXXXXX,       KC_B,  KC_M, KC_W,    KC_V,    KC_Z,  KC_GRV , \
+      KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K, KC_X,  CALCS,  XXXXXXX,       KC_B,  KC_M, KC_W,    KC_V,    KC_Z,  KC_GRV , \
       ADJUST,  XXXXXXX, KC_LALT, KC_LGUI, EISU, LOWER, RAISE,   SFT_T(KC_SPC), RAISE, KANA, KC_RGUI, KC_RALT, LOWER, KC_ENT \
       ),
 
@@ -155,6 +157,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, KC_P4, KC_P5,   KC_P6,  KC_PAST,                   _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, \
       _______, _______, KC_P1, KC_P2,   KC_P3,  KC_PMNS, _______, _______, _______, KC_PGDN, KC_PGUP, _______, _______, _______, \
       _______, _______, KC_P0, XXXXXXX, KC_DOT, KC_PPLS, _______, _______, _______, _______, _______, _______, _______, _______ \
+      ),
+
+  /* Calcs
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |      |      |      |      |             |      |   7  |   8  |   9  |      |      |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |      |      |      |      |      |      |             |      |   4  |   5  |   6  |      |      |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |      |      |      |      |   1  |   2  |   3  |      |      |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |      |      |      |      |      |      |      |      |      |   0  |      |      |      |      |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+  [_CALCS] = LAYOUT( \
+      _______,  _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
+      _______,  _______, _______, _______, _______, _______,                   _______,   KC_P7,   KC_P8,   KC_P9, _______, _______, \
+      _______,  _______, _______, _______, _______, _______,                   _______,   KC_P4,   KC_P5,   KC_P6, _______, _______, \
+      _______,  _______, _______, _______, _______, _______, _______, _______, _______,   KC_P1,   KC_P2,   KC_P3, _______, _______, \
+      _______,  _______, _______, _______, _______, _______, _______, _______, _______,   KC_P0, _______, _______, _______, _______  \
       ),
 
   /* Adjust (Lower + Raise)
@@ -375,6 +398,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case CALCS:
+      if (record->event.pressed) {
+        //not sure how to have keyboard check mode and set it to a variable, so my work around
+        //uses another variable that would be set to true after the first time a reactive key is pressed.
+        if (TOG_STATUS) { //TOG_STATUS checks is another reactive key currently pressed, only changes RGB mode if returns false
+        } else {
+          TOG_STATUS = !TOG_STATUS;
+          #ifdef RGBLIGHT_ENABLE
+            //rgblight_mode(15);
+          #endif
+        }
+        layer_on(_CALCS);
+        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+      } else {
+        #ifdef RGBLIGHT_ENABLE
+          //rgblight_mode(RGB_current_mode);  // revert RGB to initial mode prior to RGB mode change
+        #endif
+        layer_off(_CALCS);
+        TOG_STATUS = false;
+        update_tri_layer_RGB(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
     case ADJUST:
         if (record->event.pressed) {
           layer_on(_ADJUST);
@@ -497,6 +543,7 @@ void matrix_update(struct CharacterMatrix *dest,
 #define L_BASE 0
 #define L_LOWER (1<<_LOWER)
 #define L_RAISE (1<<_RAISE)
+#define L_CALCS (1<<_CALCS)
 #define L_ADJUST (1<<_ADJUST)
 #define L_ADJUST_TRI (L_ADJUST|L_RAISE|L_LOWER)
 
@@ -540,6 +587,9 @@ void render_status(struct CharacterMatrix *matrix) {
            break;
         case L_LOWER:
            matrix_write_P(matrix, PSTR("Lower"));
+           break;
+        case L_CALCS:
+           matrix_write_P(matrix, PSTR("Calcs"));
            break;
         case L_ADJUST:
         case L_ADJUST_TRI:
