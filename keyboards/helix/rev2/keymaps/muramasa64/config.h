@@ -22,5 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CONFIG_USER_H
 
 // place overrides here
+#ifdef TAPPING_TERM
+#undef TAPPING_TERM
+#endif // TAPPING_TERM
+#define TAPPING_TERM 200
 
 #endif /* CONFIG_USER_H */
