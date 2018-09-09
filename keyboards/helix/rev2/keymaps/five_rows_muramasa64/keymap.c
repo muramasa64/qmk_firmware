@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  |SFT(`)|
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KeyPad|Adjust| Alt  | GUI  | EISU |Lower |Raise |Space |Raise | KANA | GUI  | Alt  |Lower |Enter |
+   * |KeyPad|Adjust| Alt  | GUI  |LANG8 |Lower |Raise |Space |Raise |LANG9 | GUI  | Alt  |Lower |Enter |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT( \
