@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  |  `   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KeyPad|Adjust| Alt  | GUI  |LANG8 |Lower |Raise |Space |Raise |LANG9 | GUI  | Alt  |Lower |Enter |
+   * |KeyPad|Adjust| Alt  | GUI  |LANG8 |Lower |Raise |Space |Raise |LANG9 | GUI  | Alt  |GuiAlt|Enter |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT( \
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,              KC_H,    KC_J,   KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
       KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  EISU, KANA, KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_GRV, \
       MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, KC_LANG8, MO(_LOWER), MO(_RAISE), \
-                                                   SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, MO(_LOWER), KC_ENT \
+                                                   SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, RGUI(KC_RALT), KC_ENT \
       ),
 
   /* Dvorak
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   ;  |   Q  |   J  |   K  |   X  | EISU | KANA |   B  |   M  |   W  |   V  |   Z  |  `   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KEYPAD|Adjust| Alt  | GUI  | LANG8| Lower| Raise| Space| Raise| LANG9| GUI  | Alt  | Lower|Enter |
+   * |KEYPAD|Adjust| Alt  | GUI  | LANG8| Lower| Raise| Space| Raise| LANG9| GUI  | Alt  |GuiAlt|Enter |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_DVORAK] = LAYOUT( \
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,              KC_D,    KC_H,    KC_T,    KC_N,    KC_S, KC_MINS, \
       KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X, EISU, KANA,  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z, KC_GRV, \
       MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, KC_LANG8, MO(_LOWER), MO(_RAISE), \
-                                                   SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, MO(_LOWER), KC_ENT \
+                                                   SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, RGUI(KC_RALT), KC_ENT \
       ),
 
   /* KeyPad (Drovak)
