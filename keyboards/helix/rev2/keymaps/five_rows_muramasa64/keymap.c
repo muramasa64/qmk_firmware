@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  |  `   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KeyPad|Adjust| Alt  | GUI  |LANG8 |Lower |Raise |Space |Raise |LANG9 | GUI  | Alt  |GuiAlt|Enter |
+   * |KeyPad|Adjust| Alt  | GUI  |LANG8 |Lower |KeyPad|Space |Raise |LANG9 | GUI  | Alt  |GuiAlt|Enter |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT( \
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,              KC_Y,    KC_U,   KC_I,    KC_O,   KC_P,    KC_LBRC, \
       KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,              KC_H,    KC_J,   KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
       KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  EISU, KANA, KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_GRV, \
-      MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, KC_LANG8, MO(_LOWER), MO(_RAISE), \
+      MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, KC_LANG8, MO(_LOWER), MO(_KEYPAD), \
                                                    SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, RGUI(KC_RALT), KC_ENT \
       ),
 
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |   +  |   1  |   2  |   3  |   A  |   B  |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KeyPad|      |      |      |      |      |      |      |      |   0  |   ,  |   .  |      |      |
+   * |KeyPad|      |      |      |      |      |KeyPad|      |      |   0  |   ,  |   .  |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_KEYPAD] = LAYOUT( \
