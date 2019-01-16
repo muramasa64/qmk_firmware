@@ -15,13 +15,22 @@
  */
 uint32_t default_layer_state = 0;
 
+/** \brief Default Layer State Set At user Level
+ *
+ * FIXME: Needs docs
+ */
+__attribute__((weak))
+uint32_t default_layer_state_set_user(uint32_t state) {
+    return state;
+}
+
 /** \brief Default Layer State Set At Keyboard Level
  *
  * FIXME: Needs docs
  */
 __attribute__((weak))
 uint32_t default_layer_state_set_kb(uint32_t state) {
-    return state;
+    return default_layer_state_set_user(state);
 }
 
 /** \brief Default Layer State Set
@@ -35,7 +44,11 @@ static void default_layer_state_set(uint32_t state)
     default_layer_debug(); debug(" to ");
     default_layer_state = state;
     default_layer_debug(); debug("\n");
+#ifdef STRICT_LAYER_RELEASE
     clear_keyboard_but_mods(); // To avoid stuck keys
+#else
+    clear_keyboard_but_mods_and_keys(); // Don't reset held keys
+#endif
 }
 
 /** \brief Default Layer Print
@@ -118,7 +131,11 @@ void layer_state_set(uint32_t state)
     layer_debug(); dprint(" to ");
     layer_state = state;
     layer_debug(); dprintln();
+#ifdef STRICT_LAYER_RELEASE
     clear_keyboard_but_mods(); // To avoid stuck keys
+#else
+    clear_keyboard_but_mods_and_keys(); // Don't reset held keys
+#endif
 }
 
 /** \brief Layer clear
