@@ -27,6 +27,7 @@ extern uint8_t is_master;
 enum layer_number {
     _QWERTY = 0,
     _DVORAK,
+    _NICOLA,
     _KEYPAD,
     _LOWER,
     _RAISE,
@@ -39,7 +40,10 @@ enum custom_keycodes {
   KEYPAD,
   EISU,
   KANA,
-  RGBRST
+  RGBRST,
+  NICOLA,
+  NLSHFT,
+  NRSHFT
 };
 
 enum macro_keycodes {
