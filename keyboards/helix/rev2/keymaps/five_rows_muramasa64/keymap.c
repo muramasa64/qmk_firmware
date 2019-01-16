@@ -104,6 +104,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                    SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, RGUI(KC_RALT), KC_ENT \
       ),
 
+  /* Nicola
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  |  BS  |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  [   |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  |  '   |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  |  `   |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |KeyPad|Adjust| Alt  | GUI  |NLSHFT| Lower|KeyPad| Space| Raise|NRSHFT| GUI  | Alt  |GuiAlt|Enter |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+  [_NICOLA] = LAYOUT( \
+      KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,              KC_6,    KC_7,   KC_8,    KC_9,   KC_0,    KC_BSPC, \
+      KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,              KC_Y,    KC_U,   KC_I,    KC_O,   KC_P,    KC_LBRC, \
+      KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,              KC_H,    KC_J,   KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
+      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  EISU, KANA, KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_GRV, \
+      MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, NLSHFT, LT(_LOWER,KC_BSPC), MO(_KEYPAD), \
+                                                   SFT_T(KC_SPC), LT(_RAISE,KC_ENT), NRSHFT, KC_RGUI, KC_RALT, RGUI(KC_RALT), KC_ENT \
+      ),
+
   /* KeyPad (Drovak)
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |      |      |      |      |      |      |             |   /  |   _  |   %  |   :  |      |      |
@@ -207,9 +229,8 @@ static int current_default_layer;
 
 uint32_t default_layer_state_set_kb(uint32_t state) {
     // 1<<_QWERTY  - 1 == 1 - 1 == _QWERTY (=0)
-    // 1<<_COLEMAK - 1 == 2 - 1 == _COLEMAK (=1)
     current_default_layer = state - 1;
-    // 1<<_DVORAK  - 2 == 4 - 2 == _DVORAK (=2)
+    // 1<<_DVORAK  - 2 == 2 - 2 == _DVORAK (=2)
     if ( current_default_layer == 3 ) current_default_layer -= 1;
     // 1<<_KEYPAD  - 5 == 8 - 5 == _KEYPAD (=3)
     if ( current_default_layer == 7 ) current_default_layer -= 4;
@@ -220,6 +241,91 @@ void update_base_layer(int base)
 {
     eeconfig_update_default_layer(1UL<<base);
     default_layer_set(1UL<<base);
+}
+
+// 親指シフト
+static bool is_nicola = false; // 親指シフトモードかどうか
+static uint8_t ncl_chrcount = 0; // 文字キー入力のカウンタ (シフトキーを除く)
+static uint8_t ncl_keycount = 0; // シフトキーも含めた入力のカウンタ
+static bool ncl_rshift = false; // 右シフトキーの状態
+static bool ncl_lshift = false; // 左シフトキーの状態
+static bool is_modifier = false; // modifierの状態
+
+// 文字入力バッファ
+static uint16_t ninputs[5];
+
+// NICOLA配列のテーブル
+typedef struct {
+  char t[4]; // 単独
+  char l[4]; // 左シフト
+  char r[4]; // 右シフト
+} ncl_keymap;
+
+const ncl_keymap nmap[] = {
+  [KC_Q]    = {.t = ".",  .l = "la",  .r = ""},
+  [KC_W]    = {.t = "ka", .l = "e",   .r = "ga"},
+  [KC_E]    = {.t = "ta", .l = "ri",  .r = "da"},
+  [KC_R]    = {.t = "ko", .l = "lya", .r = "go"},
+  [KC_T]    = {.t = "sa", .l = "re",  .r = "za"},
+
+  [KC_Y]    = {.t = "ra", .l = "pa",  .r = "yo"},
+  [KC_U]    = {.t = "ti", .l = "di",  .r = "ni"},
+  [KC_I]    = {.t = "ku", .l = "gu",  .r = "ru"},
+  [KC_O]    = {.t = "tu", .l = "du",  .r = "ma"},
+  [KC_P]    = {.t = ",",  .l = "pi",  .r = "le"},
+
+  [KC_A]    = {.t = "u",  .l = "wo",  .r = "vu"},
+  [KC_S]    = {.t = "si", .l = "a",   .r = "zi"},
+  [KC_D]    = {.t = "te", .l = "na",  .r = "de"},
+  [KC_F]    = {.t = "ke", .l = "lyu", .r = "ge"},
+  [KC_G]    = {.t = "se", .l = "mo",  .r = "ze"},
+
+  [KC_H]    = {.t = "ha", .l = "ba",  .r = "mi"},
+  [KC_J]    = {.t = "to", .l = "do",  .r = "o"},
+  [KC_K]    = {.t = "ki", .l = "gi",  .r = "no"},
+  [KC_L]    = {.t = "i",  .l = "po",  .r = "lyo"},
+  [KC_SCLN] = {.t = "nn", .l = "",    .r = "ltu"},
+
+  [KC_Z]    = {.t = ".",  .l = "lu",  .r = ""},
+  [KC_X]    = {.t = "hi", .l = "-",   .r = "bi"},
+  [KC_C]    = {.t = "su", .l = "ro",  .r = "zu"},
+  [KC_V]    = {.t = "hu", .l = "ya",  .r = "bu"},
+  [KC_B]    = {.t = "he", .l = "li",  .r = "be"},
+
+  [KC_N]    = {.t = "me", .l = "pu",  .r = "nu"},
+  [KC_M]    = {.t = "so", .l = "zo",  .r = "yu"},
+  [KC_COMM] = {.t = "ne", .l = "pe",  .r = "mu"},
+  [KC_DOT]  = {.t = "ho", .l = "bo",  .r = "wa"},
+  [KC_SLSH] = {.t = "/",  .l = "",    .r = "lo"},
+};
+
+void ncl_type(void);
+void ncl_clear(void);
+
+// シフトキーの状態に応じて文字をPCへ送る
+void ncl_type(void) {
+  for (int i = 0; i < ncl_chrcount; i++) {
+    if (ninputs[i] == 0) break;
+    if (ncl_lshift) {
+      send_string(nmap[ninputs[i]].l);
+    } else if (ncl_rshift) {
+      send_string(nmap[ninputs[i]].r);
+    } else {
+      send_string(nmap[ninputs[i]].t);
+    }
+  }
+  ncl_clear();
+}
+
+// バッファをクリアする
+void ncl_clear(void) {
+  for (int i = 0; i < 5; i++) {
+    ninputs[i] = 0;
+  }
+  ncl_chrcount = 0;
+  ncl_keycount = 0;
+  ncl_lshift = false;
+  ncl_rshift = false;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -253,6 +359,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case EISU:
       if (record->event.pressed) {
+        layer_off(_NICOLA);
         if(keymap_config.swap_lalt_lgui==false){
           register_code(KC_LANG2);
         }else{
@@ -265,6 +372,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case KANA:
       if (record->event.pressed) {
+        layer_on(_NICOLA);
         if(keymap_config.swap_lalt_lgui==false){
           register_code(KC_LANG1);
         }else{
@@ -273,6 +381,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         unregister_code(KC_LANG1);
       }
+      layer_on(_NICOLA);
       return false;
       break;
     case RGBRST:
@@ -284,6 +393,82 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       #endif
       break;
   }
+
+  // 親指シフトの処理 ここから
+
+  // modifierが押されているか
+  switch (keycode) {
+    case KC_LCTRL:
+    case KC_LSHIFT:
+    case KC_LALT:
+    case KC_LGUI:
+    case KC_RCTRL:
+    case KC_RSHIFT:
+    case KC_RALT:
+    case KC_RGUI:
+      if (record->event.pressed) {
+        is_modifier = true;
+      } else {
+        is_modifier = false;
+      }
+      break;
+  }
+
+  if (is_nicola & !is_modifier) {
+    if (record->event.pressed) {
+      switch (keycode) {
+        case NLSHFT: // 親指シフトキー
+          ncl_lshift = true;
+          ncl_keycount++;
+          if (ncl_keycount > 1) ncl_type();
+          return false;
+          break;
+        case NRSHFT:
+          ncl_rshift = true;
+          ncl_keycount++;
+          if (ncl_keycount > 1) ncl_type();
+          return false;
+          break;
+        case KC_A ... KC_Z: // 親指シフト処理するキー
+        case KC_SLSH:
+        case KC_DOT:
+        case KC_COMM:
+        case KC_SCLN:
+          ninputs[ncl_chrcount] = keycode;
+          ncl_chrcount++;
+          ncl_keycount++;
+          if (ncl_keycount > 1) ncl_type();
+          return false;
+          break;
+        default: // 親指シフトに関係ないキー
+          ncl_clear();
+          break;
+      }
+
+    } else { // key release
+      switch (keycode) {
+        case NLSHFT: // 親指シフトキー
+          ncl_lshift = false;
+          if (ncl_keycount > 0) ncl_type();
+          return false;
+          break;
+        case NRSHFT:
+          ncl_rshift = false;
+          if (ncl_keycount > 0) ncl_type();
+          return false;
+          break;
+        case KC_A ... KC_Z: // 親指シフト処理するキー
+        case KC_SLSH:
+        case KC_DOT:
+        case KC_COMM:
+        case KC_SCLN:
+          if (ncl_keycount > 0) ncl_type();
+          return false;
+          break;
+      }
+    }
+  }
+  // 親指シフト処理 ここまで
   return true;
 }
 
@@ -363,6 +548,7 @@ static void render_logo(struct CharacterMatrix *matrix) {
 
 static const char Qwerty_name[]  PROGMEM = " Qwerty";
 static const char Dvorak_name[]  PROGMEM = " Dvorak";
+static const char Nicola_name[]  PROGMEM = " Nicola";
 static const char Keypad_name[]  PROGMEM = " Keypad";
 
 static const char Lower_name[]   PROGMEM = ":Lower";
@@ -372,6 +558,7 @@ static const char Adjust_name[]  PROGMEM = ":Adjust";
 static const char *layer_names[] = {
     [_QWERTY] = Qwerty_name,
     [_DVORAK] = Dvorak_name,
+    [_NICOLA] = Nicola_name,
     [_KEYPAD] = Keypad_name,
     [_LOWER]  = Lower_name,
     [_RAISE]  = Raise_name,
