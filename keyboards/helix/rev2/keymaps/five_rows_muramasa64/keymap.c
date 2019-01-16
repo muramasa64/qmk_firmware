@@ -104,24 +104,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                    SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, RGUI(KC_RALT), KC_ENT \
       ),
 
-  /* Nicola
+  /* Nicola (Dvorak)
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  |  BS  |
+   * | Esc  |      |      |      |      |      |             |      |      |      |      |      | Bksp |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  [   |
+   * | Tab  |   '  |   ,  |   .  |   P  |   Y  |             |   F  |   G  |   C  |   R  |   L  |  /   |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  |  '   |
+   * | Ctrl |   A  |   O  |   E  |   U  |   I  |             |   D  |   H  |   T  |   N  |   S  |  -   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  |  `   |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * | Shift|   ;  |   Q  |   J  |   K  |   X  | EISU | KANA |   B  |   M  |   W  |   V  |   Z  |  `   |
+   * ,-----------------------------------------.             ,-----------------------------------------.
    * |KeyPad|Adjust| Alt  | GUI  |NLSHFT| Lower|KeyPad| Space| Raise|NRSHFT| GUI  | Alt  |GuiAlt|Enter |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_NICOLA] = LAYOUT( \
-      KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,              KC_6,    KC_7,   KC_8,    KC_9,   KC_0,    KC_BSPC, \
-      KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,              KC_Y,    KC_U,   KC_I,    KC_O,   KC_P,    KC_LBRC, \
-      KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,              KC_H,    KC_J,   KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
-      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  EISU, KANA, KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_GRV, \
+      KC_ESC,  _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, KC_BSPC, \
+      KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,              KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_SLSH, \
+      KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,              KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_MINS, \
+      KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X, EISU, KANA,  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_GRV, \
       MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, NLSHFT, LT(_LOWER,KC_BSPC), MO(_KEYPAD), \
                                                    SFT_T(KC_SPC), LT(_RAISE,KC_ENT), NRSHFT, KC_RGUI, KC_RALT, RGUI(KC_RALT), KC_ENT \
       ),
@@ -261,6 +261,7 @@ typedef struct {
   char r[4]; // 右シフト
 } ncl_keymap;
 
+/* for qwerty
 const ncl_keymap nmap[] = {
   [KC_Q]    = {.t = ".",  .l = "la",  .r = ""},
   [KC_W]    = {.t = "ka", .l = "e",   .r = "ga"},
@@ -297,6 +298,47 @@ const ncl_keymap nmap[] = {
   [KC_COMM] = {.t = "ne", .l = "pe",  .r = "mu"},
   [KC_DOT]  = {.t = "ho", .l = "bo",  .r = "wa"},
   [KC_SLSH] = {.t = "/",  .l = "",    .r = "lo"},
+};
+*/
+
+/* for dvorak */
+const ncl_keymap nmap[] = {
+
+  [KC_QUOT] = {.t = ".",  .l = "la",  .r = ""},
+  [KC_COMM] = {.t = "ka", .l = "e",   .r = "ga"},
+  [KC_DOT]  = {.t = "ta", .l = "ri",  .r = "da"},
+  [KC_P]    = {.t = "ko", .l = "lya", .r = "go"},
+  [KC_Y]    = {.t = "sa", .l = "re",  .r = "za"},
+
+  [KC_F]    = {.t = "ra", .l = "pa",  .r = "yo"},
+  [KC_G]    = {.t = "ti", .l = "di",  .r = "ni"},
+  [KC_C]    = {.t = "ku", .l = "gu",  .r = "ru"},
+  [KC_R]    = {.t = "tu", .l = "du",  .r = "ma"},
+  [KC_L]    = {.t = ",",  .l = "pi",  .r = "le"},
+
+  [KC_A]    = {.t = "u",  .l = "wo",  .r = "vu"},
+  [KC_O]    = {.t = "si", .l = "a",   .r = "zi"},
+  [KC_E]    = {.t = "te", .l = "na",  .r = "de"},
+  [KC_U]    = {.t = "ke", .l = "lyu", .r = "ge"},
+  [KC_I]    = {.t = "se", .l = "mo",  .r = "ze"},
+
+  [KC_D]    = {.t = "ha", .l = "ba",  .r = "mi"},
+  [KC_H]    = {.t = "to", .l = "do",  .r = "o"},
+  [KC_T]    = {.t = "ki", .l = "gi",  .r = "no"},
+  [KC_N]    = {.t = "i",  .l = "po",  .r = "lyo"},
+  [KC_S]    = {.t = "nn", .l = "",    .r = "ltu"},
+
+  [KC_SCLN] = {.t = ".",  .l = "lu",  .r = ""},
+  [KC_Q]    = {.t = "hi", .l = "-",   .r = "bi"},
+  [KC_J]    = {.t = "su", .l = "ro",  .r = "zu"},
+  [KC_K]    = {.t = "hu", .l = "ya",  .r = "bu"},
+  [KC_X]    = {.t = "he", .l = "li",  .r = "be"},
+
+  [KC_B]    = {.t = "me", .l = "pu",  .r = "nu"},
+  [KC_M]    = {.t = "so", .l = "zo",  .r = "yu"},
+  [KC_W]    = {.t = "ne", .l = "pe",  .r = "mu"},
+  [KC_V]    = {.t = "ho", .l = "bo",  .r = "wa"},
+  [KC_Z]    = {.t = "/",  .l = "",    .r = "lo"},
 };
 
 void ncl_type(void);
@@ -360,6 +402,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case EISU:
       if (record->event.pressed) {
         layer_off(_NICOLA);
+        is_nicola = false;
         if(keymap_config.swap_lalt_lgui==false){
           register_code(KC_LANG2);
         }else{
@@ -373,6 +416,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KANA:
       if (record->event.pressed) {
         layer_on(_NICOLA);
+        is_nicola = true;
         if(keymap_config.swap_lalt_lgui==false){
           register_code(KC_LANG1);
         }else{
@@ -430,10 +474,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           return false;
           break;
         case KC_A ... KC_Z: // 親指シフト処理するキー
-        case KC_SLSH:
+        // case KC_SLSH: // for Qwerty
         case KC_DOT:
         case KC_COMM:
         case KC_SCLN:
+        case KC_QUOT: // for Dvorak
           ninputs[ncl_chrcount] = keycode;
           ncl_chrcount++;
           ncl_keycount++;
