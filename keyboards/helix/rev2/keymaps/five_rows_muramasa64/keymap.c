@@ -512,10 +512,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           return false;
           break;
         case KC_A ... KC_Z: // 親指シフト処理するキー
-        case KC_SLSH:
+        // case KC_SLSH:
         case KC_DOT:
         case KC_COMM:
         case KC_SCLN:
+        case KC_QUOT: // for Dvorak
           if (ncl_keycount > 0) ncl_type();
           return false;
           break;
