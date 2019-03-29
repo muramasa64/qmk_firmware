@@ -445,12 +445,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
-  }
 
   // 親指シフトの処理 ここから
-
   // modifierが押されているか
-  switch (keycode) {
     case KC_LCTRL:
     case KC_LSHIFT:
     case KC_LALT:
@@ -498,7 +495,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           ncl_clear();
           break;
       }
-
     } else { // key release
       switch (keycode) {
         case NLSHFT: // 親指シフトキー
