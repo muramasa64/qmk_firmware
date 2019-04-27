@@ -10,6 +10,9 @@
 #ifdef SSD1306OLED
   #include "ssd1306.h"
 #endif
+#ifdef CONSOLE_ENABLE
+  #include <print.h>
+#endif
 
 extern keymap_config_t keymap_config;
 
@@ -42,16 +45,9 @@ enum custom_keycodes {
   RGBRST
 };
 
-enum macro_keycodes {
-  KC_SAMPLEMACRO,
-};
-
-
-// Fillers to make layering more clear
+//Macros
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
-//Macros
-#define M_SAMPLE M(KC_SAMPLEMACRO)
 
 #if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -192,7 +188,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef AUDIO_ENABLE
 
-float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
 float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
 float tone_plover[][2]     = SONG(PLOVER_SOUND);
 float tone_plover_gb[][2]  = SONG(PLOVER_GOODBYE_SOUND);
