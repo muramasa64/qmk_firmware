@@ -28,8 +28,7 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 enum layer_number {
-    _QWERTY = 0,
-    _DVORAK,
+    _DVORAK = 0,
     _KEYPAD,
     _LOWER,
     _RAISE,
@@ -37,8 +36,7 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
-  DVORAK,
+  DVORAK = SAFE_RANGE,
   KEYPAD,
   EISU,
   KANA,
@@ -51,28 +49,6 @@ enum custom_keycodes {
 
 #if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
-  /* Qwerty
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  |  BS  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  [   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  |  '   |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  |  `   |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KeyPad|Adjust| Alt  | GUI  |LANG8 |Lower |KeyPad|Space |Raise |LANG9 | GUI  | Alt  |GuiAlt|Enter |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_QWERTY] = LAYOUT( \
-      KC_ESC,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,              KC_6,    KC_7,   KC_8,    KC_9,   KC_0,    KC_BSPC, \
-      KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,              KC_Y,    KC_U,   KC_I,    KC_O,   KC_P,    KC_LBRC, \
-      KC_LCTL,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,              KC_H,    KC_J,   KC_K,    KC_L,   KC_SCLN, KC_QUOT, \
-      KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,  EISU, KANA, KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_GRV, \
-      MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, KC_LANG8, LT(_LOWER,KC_BSPC), MO(_KEYPAD), \
-                                                   SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, RGUI(KC_RALT), KC_ENT \
-      ),
 
   /* Dvorak
    * ,-----------------------------------------.             ,-----------------------------------------.
@@ -174,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [_ADJUST] =  LAYOUT( \
       _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
-      _______, RESET,   RGBRST,  _______, _______, _______,                   AG_NORM, QWERTY,  _______, _______, _______, _______, \
+      _______, RESET,   RGBRST,  _______, _______, _______,                   AG_NORM, _______,  _______, _______, _______, _______, \
       _______, _______, _______, AU_ON,   AU_OFF,  _______,                   AG_SWAP, DVORAK,  _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD,RGB_HUD, RGB_SAD, RGB_VAD \
@@ -215,15 +191,6 @@ void update_base_layer(int base)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_qwerty);
-        #endif
-        update_base_layer(_QWERTY);
-      }
-      return false;
-      break;
     case DVORAK:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
@@ -352,7 +319,6 @@ static void render_logo(struct CharacterMatrix *matrix) {
   //matrix_write_P(&matrix, PSTR(" Split keyboard kit"));
 }
 
-static const char Qwerty_name[]  PROGMEM = " Qwerty";
 static const char Dvorak_name[]  PROGMEM = " Dvorak";
 static const char Keypad_name[]  PROGMEM = " Keypad";
 
@@ -361,7 +327,6 @@ static const char Raise_name[]   PROGMEM = ":Raise";
 static const char Adjust_name[]  PROGMEM = ":Adjust";
 
 static const char *layer_names[] = {
-    [_QWERTY] = Qwerty_name,
     [_DVORAK] = Dvorak_name,
     [_KEYPAD] = Keypad_name,
     [_LOWER]  = Lower_name,
