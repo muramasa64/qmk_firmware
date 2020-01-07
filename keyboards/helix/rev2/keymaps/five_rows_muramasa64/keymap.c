@@ -47,7 +47,6 @@ enum custom_keycodes {
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
-#if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Dvorak
@@ -68,8 +67,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_QUOT, KC_COMM, KC_DOT, KC_P,    KC_Y,             KC_F, KC_G, KC_C, KC_R, KC_L, KC_SLSH, \
       KC_LCTL, KC_A,    KC_O,    KC_E,   KC_U,    KC_I,             KC_D, KC_H, KC_T, KC_N, KC_S, KC_MINS, \
       KC_LSFT, KC_SCLN, KC_Q,    KC_J,   KC_K,    KC_X, EISU, KANA, KC_B, KC_M, KC_W, KC_V, KC_Z, KC_GRV, \
-      MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, KC_LANG8, LT(_LOWER,KC_BSPC), SFT_T(KC_SPC), \
-                                                   SFT_T(KC_SPC), LT(_RAISE,KC_ENT), KC_LANG9, KC_RGUI, KC_RALT, RGUI(KC_RSFT), KC_ENT \
+      MO(_KEYPAD), MO(_ADJUST), KC_LALT, KC_LGUI, KC_LANG8, _LOWER, SFT_T(KC_SPC), \
+                                                   SFT_T(KC_SPC), _RAISE, KC_LANG9, KC_RGUI, KC_RALT, RGUI(KC_RSFT), KC_ENT \
       ),
 
   /* KeyPad (Drovak)
@@ -106,6 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |      |      |      |      |      |Lower |      |      |      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
+
   [_LOWER] = LAYOUT( \
       _______, _______, _______,       _______,       _______, _______,                   KC_CIRC, KC_AMPR, KC_ASTR, _______, _______, KC_UNDS, \
       _______, _______, LGUI(KC_LCBR), LGUI(KC_RCBR), _______, LGUI(KC_PLUS),             KC_LCBR, KC_RCBR, KC_PLUS, KC_SLSH, KC_BSLS, KC_EQL, \
@@ -156,11 +156,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD,RGB_HUD, RGB_SAD, RGB_VAD \
       )
 };
-
-#else
-#error "undefined keymaps"
-#endif
-
 
 #ifdef AUDIO_ENABLE
 
