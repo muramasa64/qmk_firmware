@@ -76,6 +76,8 @@ enum custom_keycodes {
 #define KC_GRBR   LGUI(KC_RBRC)
 #define KC_GPLS   LGUI(KC_PLUS)
 #define KC_GMNS   LGUI(KC_MINS)
+#define KC_MHME   LCTL(KC_A)
+#define KC_MEND   LCTL(KC_E)
 #define ___       _______
 
 #if MATRIX_ROWS == 10 // HELIX_ROWS == 5
@@ -251,23 +253,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Raise
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
+   * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |             |  F7  |  F8  |  F9  | F10  | F11  | F12  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |  _   |  -   |             |  =   |  +   |      |      |      |      |
+   * |      |  !   |  @   |  #   |  $   |  %   |             |PageUp|Ctr+A |  Up  |Ctr+E | Lit+ | Vol+ |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |  {   |  [   |             |  ]   |  }   |      |      |      |      |
+   * |      |      | Copy | Cut  | Paste|      |             |PageDn| Left | Down |Right | Lit- | Vol- |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      | EISU | EISU | KANA | KANA | Next | Vol- | Vol+ | Play |      |
+   * |      |      |      |      |      |      |      |      |      |      |      |      |      | Mute |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
+   * |      |      |      |      |      |      |      |      |Raise |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = LAYOUT_kc( \
-      XXXX, XXXX, XXXX, XXXX, XXXX, XXXX,             XXXX, XXXX, XXXX, XXXX, XXXX, XXXX, \
-      XXXX, XXXX, XXXX, XXXX, LSMI, MINS,              EQL, LSEQ, XXXX, XXXX, XXXX, XXXX, \
-      ____, XXXX, XXXX, XXXX, LSLB, LBRC,             RBRC, LSRB, XXXX, XXXX, XXXX, ____, \
-      ____, XXXX, XXXX, XXXX, XXXX,xEISU,xEISU, xKANA,xKANA,MNXT, VOLD, VOLU, MPLY, ____, \
-      ADJ,   ADJ, XXXX, ____, ____, XXXX, ____, ____, XXXX, ____, ____, XXXX,  ADJ,  ADJ \
+        F1,   F2,   F3,   F4,   F5,   F6,               F7,   F8,   F9,  F10,  F11,  F12, \
+      TILD, EXLM,   AT, HASH,  DLR, PERC,             PGUP, MHME,   UP, MEND,  F15, _VOLUP, \
+      ____, ____,  CUT, COPY, PSTE, ____,             PGDN, LEFT, DOWN, RGHT,  F14, _VOLDOWN, \
+      ____, ____, ____, ____, ____, ____, ____, xKANA,xKANA,MNXT, VOLD, VOLU, ____, _MUTE, \
+      ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____ \
       ),
 
   /* Adjust (Lower + Raise)
