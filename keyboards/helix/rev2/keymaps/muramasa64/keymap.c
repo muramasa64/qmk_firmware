@@ -55,6 +55,7 @@ enum custom_keycodes {
 
 //Macros
 #define KC_LOWER  MO(_LOWER)
+#define KC_RAISE  MO(_RAISE)
 #define KC_RABS   LT(_RAISE,KC_BSPC)
 #define KC_RAEN   LT(_RAISE,KC_ENT)
 #define KC_FF12   LT(_PADFUNC,KC_F12)
@@ -65,6 +66,10 @@ enum custom_keycodes {
 #define KC_LSEQ   LSFT(KC_EQL)
 #define KC_LSRB   LSFT(KC_RBRC)
 #define KC_LSLB   LSFT(KC_LBRC)
+#define KC_SNDS   SFT_T(KC_SPC)
+#define KC_LTST   KC_LANG8
+#define KC_RTST   KC_LANG9
+#define KC_KEYPAD KEYPAD
 #define ___       _______
 
 #if MATRIX_ROWS == 10 // HELIX_ROWS == 5
@@ -116,21 +121,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------.             ,-----------------------------------------.
    * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  | Bksp |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Tab  |   '  |   ,  |   .  |   P  |   Y  |             |   F  |   G  |   C  |   R  |   L  |  \   |
+   * | Tab  |   '  |   ,  |   .  |   P  |   Y  |             |   F  |   G  |   C  |   R  |   L  |  /   |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Ctrl |   A  |   O  |   E  |   U  |   I  |             |   D  |   H  |   T  |   N  |   S  | Ctrl |
+   * | Ctrl |   A  |   O  |   E  |   U  |   I  |             |   D  |   H  |   T  |   N  |   S  |  -   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Shift|   ;  |   Q  |   J  |   K  |   X  |   `  |   /  |   B  |   M  |   W  |   V  |   Z  | Shift|
+   * | Shift|   ;  |   Q  |   J  |   K  |   X  | EISU | KANA |   B  |   M  |   W  |   V  |   Z  |  `   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Lower | Lower| Caps |  Alt |  GUI | Space|  BS  | Enter| Space| GUI  | Alt  | Menu |Lower |Lower |
+   * |KeyPad|Adjust|  Alt |  GUI |TMBSFT| Lower| SandS| SandS| Raise|TMBSFT| GUI  |  Alt | Menu |Lower |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_DVORAK] = LAYOUT_kc( \
       ESC,    1,    2,    3,    4,    5,                  6,    7,    8,    9,    0,  BSPC, \
-      TAB, QUOT, COMM,  DOT,    P,    Y,                  F,    G,    C,    R,    L,  BSLS, \
-      LCTL,   A,    O,    E,    U,    I,                  D,    H,    T,    N,    S,  RCTL, \
-      LSFT, SCLN,   Q,    J,    K,    X,    GRV,  SLSH,   B,    M,    W,    V,    Z,  RSFT, \
-      LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
+      TAB, QUOT, COMM,  DOT,    P,    Y,                  F,    G,    C,    R,    L,  SLSH, \
+      LCTL,   A,    O,    E,    U,    I,                  D,    H,    T,    N,    S,  MINS, \
+      LSFT, SCLN,   Q,    J,    K,    X,   xEISU, xKANA,  B,    M,    W,    V,    Z,   GRV, \
+      KEYPAD, ADJ, LALT, LGUI, LTST, LOWER, SNDS, SNDS, RAISE, RTST, RGUI, RALT, APP,  ENT \
       ),
 
   /* Eucalyn (http://eucalyn.hatenadiary.jp/entry/about-eucalyn-layout)

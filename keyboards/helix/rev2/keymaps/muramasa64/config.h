@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CONFIG_USER_H
 
 #undef TAPPING_TERM
-#define TAPPING_TERM 300
+#define TAPPING_TERM 120
 #define PERMISSIVE_HOLD
 /* when TAPPING_TERM >= 500 same effect PERMISSIVE_HOLD.
    see tmk_core/common/action_tapping.c */
