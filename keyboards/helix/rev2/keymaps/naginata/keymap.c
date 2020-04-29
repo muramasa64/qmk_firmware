@@ -50,7 +50,7 @@ enum layer_number {
 };
 
 enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
+  QWERTY = NG_SAFE_RANGE,
   // <naginata>
   NAGINATA,
   // </naginata>

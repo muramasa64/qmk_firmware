@@ -95,43 +95,43 @@ static uint16_t ninputs[NGBUFFER];
 // キーコードとキービットの対応
 // メモリ削減のため配列はNG_Qを0にしている
 const uint32_t ng_key[] = {
-  [NG_Q    - NG_Q] = B_Q,
-  [NG_W    - NG_Q] = B_W,
-  [NG_E    - NG_Q] = B_E,
-  [NG_R    - NG_Q] = B_R,
-  [NG_T    - NG_Q] = B_T,
+  [KC_NG_Q    - KC_NG_Q] = B_Q,
+  [KC_NG_W    - KC_NG_Q] = B_W,
+  [KC_NG_E    - KC_NG_Q] = B_E,
+  [KC_NG_R    - KC_NG_Q] = B_R,
+  [KC_NG_T    - KC_NG_Q] = B_T,
 
-  [NG_Y    - NG_Q] = B_Y,
-  [NG_U    - NG_Q] = B_U,
-  [NG_I    - NG_Q] = B_I,
-  [NG_O    - NG_Q] = B_O,
-  [NG_P    - NG_Q] = B_P,
+  [KC_NG_Y    - KC_NG_Q] = B_Y,
+  [KC_NG_U    - KC_NG_Q] = B_U,
+  [KC_NG_I    - KC_NG_Q] = B_I,
+  [KC_NG_O    - KC_NG_Q] = B_O,
+  [KC_NG_P    - KC_NG_Q] = B_P,
 
-  [NG_A    - NG_Q] = B_A,
-  [NG_S    - NG_Q] = B_S,
-  [NG_D    - NG_Q] = B_D,
-  [NG_F    - NG_Q] = B_F,
-  [NG_G    - NG_Q] = B_G,
+  [KC_NG_A    - KC_NG_Q] = B_A,
+  [KC_NG_S    - KC_NG_Q] = B_S,
+  [KC_NG_D    - KC_NG_Q] = B_D,
+  [KC_NG_F    - KC_NG_Q] = B_F,
+  [KC_NG_G    - KC_NG_Q] = B_G,
 
-  [NG_H    - NG_Q] = B_H,
-  [NG_J    - NG_Q] = B_J,
-  [NG_K    - NG_Q] = B_K,
-  [NG_L    - NG_Q] = B_L,
-  [NG_SCLN - NG_Q] = B_SCLN,
+  [KC_NG_H    - KC_NG_Q] = B_H,
+  [KC_NG_J    - KC_NG_Q] = B_J,
+  [KC_NG_K    - KC_NG_Q] = B_K,
+  [KC_NG_L    - KC_NG_Q] = B_L,
+  [KC_NG_SCLN - KC_NG_Q] = B_SCLN,
 
-  [NG_Z    - NG_Q] = B_Z,
-  [NG_X    - NG_Q] = B_X,
-  [NG_C    - NG_Q] = B_C,
-  [NG_V    - NG_Q] = B_V,
-  [NG_B    - NG_Q] = B_B,
+  [KC_NG_Z    - KC_NG_Q] = B_Z,
+  [KC_NG_X    - KC_NG_Q] = B_X,
+  [KC_NG_C    - KC_NG_Q] = B_C,
+  [KC_NG_V    - KC_NG_Q] = B_V,
+  [KC_NG_B    - KC_NG_Q] = B_B,
 
-  [NG_N    - NG_Q] = B_N,
-  [NG_M    - NG_Q] = B_M,
-  [NG_COMM - NG_Q] = B_COMM,
-  [NG_DOT  - NG_Q] = B_DOT,
-  [NG_SLSH - NG_Q] = B_SLSH,
+  [KC_NG_N    - KC_NG_Q] = B_N,
+  [KC_NG_M    - KC_NG_Q] = B_M,
+  [KC_NG_COMM - KC_NG_Q] = B_COMM,
+  [KC_NG_DOT  - KC_NG_Q] = B_DOT,
+  [KC_NG_SLSH - KC_NG_Q] = B_SLSH,
 
-  [NG_SHFT - NG_Q] = B_SHFT,
+  [KC_NG_SHFT - KC_NG_Q] = B_SHFT,
 };
 
 // カナ変換テーブル
@@ -824,10 +824,10 @@ bool process_naginata(uint16_t keycode, keyrecord_t *record) {
 
   if (record->event.pressed) {
     switch (keycode) {
-      case NG_Q ... NG_SHFT:
+      case KC_NG_Q ... KC_NG_SHFT:
         ninputs[ng_chrcount] = keycode; // キー入力をバッファに貯める
         ng_chrcount++;
-        keycomb |= ng_key[keycode - NG_Q]; // キーの重ね合わせ
+        keycomb |= ng_key[keycode - KC_NG_Q]; // キーの重ね合わせ
         // バッファが一杯になったら処理を開始
         if (ng_chrcount >= NGBUFFER) {
           naginata_type();
@@ -837,9 +837,9 @@ bool process_naginata(uint16_t keycode, keyrecord_t *record) {
     }
   } else { // key release
     switch (keycode) {
-      case NG_Q ... NG_SHFT:
+      case KC_NG_Q ... KC_NG_SHFT:
         // どれかキーを離したら処理を開始する
-        keycomb &= ~ng_key[keycode - NG_Q]; // キーの重ね合わせ
+        keycomb &= ~ng_key[keycode - KC_NG_Q]; // キーの重ね合わせ
         if (ng_chrcount > 0) {
           naginata_type();
         }
@@ -877,7 +877,7 @@ bool naginata_lookup(int nt, bool shifted) {
 
   // バッファ内のキーを組み合わせる
   for (int i = 0; i < nt; i++) {
-    keycomb_buf |= ng_key[ninputs[i] - NG_Q];
+    keycomb_buf |= ng_key[ninputs[i] - KC_NG_Q];
   }
 
   if (shifted) {
