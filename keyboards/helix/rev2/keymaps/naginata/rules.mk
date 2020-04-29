@@ -26,6 +26,7 @@ HELIX_ROWS = 5              # Helix Rows is 4 or 5
 
 # <naginata>
 COMBO_ENABLE = yes
+UNICODE_ENABLE = yes
 SRC += naginata_v12.c
 # </naginata>
 
