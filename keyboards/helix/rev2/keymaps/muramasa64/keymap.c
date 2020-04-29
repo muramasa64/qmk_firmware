@@ -69,7 +69,7 @@ enum custom_keycodes {
 #define KC_SNDS   SFT_T(KC_SPC)
 #define KC_LTST   KC_LANG8
 #define KC_RTST   KC_LANG9
-#define KC_MKPD   MO(KEYPAD)
+#define KC_MKPD   MO(_KEYPAD)
 #define KC_GLCB   LGUI(KC_LCBR)
 #define KC_GRCB   LGUI(KC_RCBR)
 #define KC_GLBR   LGUI(KC_LBRC)
