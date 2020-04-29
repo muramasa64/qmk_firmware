@@ -70,6 +70,12 @@ enum custom_keycodes {
 #define KC_LTST   KC_LANG8
 #define KC_RTST   KC_LANG9
 #define KC_KEYPAD KEYPAD
+#define KC_GLCB   LGUI(KC_LCBR)
+#define KC_GRCB   LGUI(KC_RCBR)
+#define KC_GLBR   LGUI(KC_LBRC)
+#define KC_GRBR   LGUI(KC_RBRC)
+#define KC_GPLS   LGUI(KC_PLUS)
+#define KC_GMNS   LGUI(KC_MINS)
 #define ___       _______
 
 #if MATRIX_ROWS == 10 // HELIX_ROWS == 5
@@ -224,23 +230,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |  F7  |  F8  |  F9  |  F10 | F11  |
+   * |      |      |      |      |      |      |             |   ^  |   &  |   *  |      |      |   _  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |Pause | ScrLk| Ins  |      |             |      | Ins  | ScrLk|Pause |      | F12  |
+   * |      |      |GUI+{ |GUI+} |      |GUI++ |             |   {  |   }  |   +  |   /  |   \  |   =  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      | PgUp |      | Up   |Delete| Home |             | Home |Delete| Up   |      | PgUp |      |
+   * |      |      |GUI+[ |GUI+] |      |GUI+- |             |   [  |   ]  |   (  |   )  |   |  |   -  |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      | PgDn | Left | Down | Right| End  |Adjust|Adjust| End  | Left | Down | Right| PgDn |      |
+   * |      |      |      |      |      |      |      |   `  |   %  |   $  |   #  |   @  |   !  |   ~  |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      | PrtSc|      |      |      |      |      |      |      |      | PrtSc|      |      |
+   * |      |      |      |      |      |Lower |      |      |      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT_kc( \
-      XXXX,  F1,   F2,   F3,   F4,   F5,                F6,   F7,   F8,   F9,  F10,  F11, \
-      XXXX, XXXX, PAUS, SLCK, INS,  XXXX,             XXXX,  INS, SLCK, PAUS, XXXX,  F12, \
-      ____, HOME, XXXX, UP,   DEL,  PGUP,             PGUP,  DEL,   UP, XXXX, HOME, ____, \
-      ____, END,  LEFT, DOWN, RGHT, PGDN, XXXX, XXXX, PGDN, LEFT, DOWN, RGHT,  END, ____, \
-      ____, ____, PSCR, ____, ____, ____,  ADJ,  ADJ, ____, ____, ____, PSCR, ____, ____ \
+      ____, ____, ____, ____, ____, ____,             CIRC, AMPR, ASTR, ____, ____, UNDS, \
+      ____, ____, GLCB, GRCB, ____, GPLS,             LCBR, RCBR, PLUS, SLSH, BSLS,  EQL, \
+      ____, ____, GLBR, GLBR,  DEL, GMNS,             LBRC, RBRC, LPRN, RPRN, PIPE, MINS, \
+      ____, ____, ____, ____, ____, ____, ____,  GRV, PERC,  DLR, HASH,   AT, EXLM, TILD, \
+      ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____ \
       ),
 
   /* Raise
