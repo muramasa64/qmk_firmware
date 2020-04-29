@@ -24,6 +24,11 @@ HELIX_ROWS = 5              # Helix Rows is 4 or 5
 # LED_ANIMATIONS = yes        # LED animations
 # IOS_DEVICE_ENABLE = no      # connect to IOS device (iPad,iPhone)
 
+# <naginata>
+COMBO_ENABLE = yes
+SRC += naginata_v12.c
+# </naginata>
+
 ifneq ($(strip $(HELIX)),)
   ifeq ($(findstring console,$(HELIX)), console)
     CONSOLE_ENABLE = yes
