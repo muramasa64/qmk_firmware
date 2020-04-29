@@ -71,7 +71,7 @@ enum custom_keycodes {
 enum combo_events {
   NAGINATA_ON_CMB,
   NAGINATA_OFF_CMB,
-}
+};
 
 const uint16_t PROGMEM ngon_combo[] = {KC_H, KC_J, COMBO_END};
 const uint16_t PROGMEM ngoff_combo[] = {KC_F, KC_G, COMBO_END};
