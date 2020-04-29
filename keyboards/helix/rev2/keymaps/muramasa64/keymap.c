@@ -532,8 +532,8 @@ static const char Keypad_name[]  PROGMEM = " Keypad";
 static const char AUX_name[]     PROGMEM = ":AUX";
 static const char KAUX_name[]    PROGMEM = ":00";
 static const char Padfunc_name[] PROGMEM = ":PadFunc";
-static const char Lower_name[]   PROGMEM = ":Func";
-static const char Raise_name[]   PROGMEM = ":Extra";
+static const char Lower_name[]   PROGMEM = ":Lower";
+static const char Raise_name[]   PROGMEM = ":Raise";
 static const char Adjust_name[]  PROGMEM = ":Adjust";
 
 static const char *layer_names[] = {
