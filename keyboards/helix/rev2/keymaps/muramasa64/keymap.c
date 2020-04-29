@@ -69,7 +69,7 @@ enum custom_keycodes {
 #define KC_SNDS   SFT_T(KC_SPC)
 #define KC_LTST   KC_LANG8
 #define KC_RTST   KC_LANG9
-#define KC_KEYPAD KEYPAD
+#define KC_MKPD   MO(KEYPAD)
 #define KC_GLCB   LGUI(KC_LCBR)
 #define KC_GRCB   LGUI(KC_RCBR)
 #define KC_GLBR   LGUI(KC_LBRC)
@@ -139,11 +139,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_DVORAK] = LAYOUT_kc( \
-      ESC,    1,    2,    3,    4,    5,                  6,    7,    8,    9,    0,  BSPC, \
-      TAB, QUOT, COMM,  DOT,    P,    Y,                  F,    G,    C,    R,    L,  SLSH, \
-      LCTL,   A,    O,    E,    U,    I,                  D,    H,    T,    N,    S,  MINS, \
-      LSFT, SCLN,   Q,    J,    K,    X,   xEISU, xKANA,  B,    M,    W,    V,    Z,   GRV, \
-      KEYPAD, ADJ, LALT, LGUI, LTST, LOWER, SNDS, SNDS, RAISE, RTST, RGUI, RALT, APP,  ENT \
+      ESC,     1,    2,    3,    4,    5,                  6,    7,    8,    9,    0, BSPC, \
+      TAB,  QUOT, COMM,  DOT,    P,    Y,                  F,    G,    C,    R,    L, SLSH, \
+      LCTL,    A,    O,    E,    U,    I,                  D,    H,    T,    N,    S, MINS, \
+      LSFT, SCLN,    Q,    J,    K,    X, xEISU, xKANA,    B,    M,    W,    V,    Z,  GRV, \
+      MKPD, ADJ, LALT, LGUI, LTST, LOWER, SNDS,   SNDS, RAISE, RTST, RGUI, RALT, APP,  ENT \
       ),
 
   /* Eucalyn (http://eucalyn.hatenadiary.jp/entry/about-eucalyn-layout)
