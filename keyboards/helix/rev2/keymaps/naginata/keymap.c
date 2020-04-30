@@ -51,12 +51,12 @@ enum layer_number {
 
 enum custom_keycodes {
   QWERTY = NG_SAFE_RANGE,
-  // <naginata>
-  NAGINATA,
-  // </naginata>
   COLEMAK,
   DVORAK,
   EUCALYN,
+  // <naginata>
+  NAGINATA,
+  // </naginata>
   KEYPAD,
   KC_xEISU,
   KC_xKANA,
@@ -136,28 +136,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS, RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
       ),
 
-  // <naginata>
-  /* Naginata
-   * ,-----------------------------------------.             ,-----------------------------------------.
-   * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  |  BS  |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  \   |
-   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  | Ctrl |
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  |   `  |   '  |   N  |   M  |   ,  |   .  |   /  | Shift|
-   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Lower | Lower| Caps |  Alt |  GUI | Space|  BS  | Enter| Space| GUI  | Alt  | Menu |Lower |Lower |
-   * `-------------------------------------------------------------------------------------------------'
-   */
-  [_NAGINATA] = LAYOUT_kc( \
-      ESC,    1,    2,    3,    4,    5,                  6,    7,    8,    9,    0,  BSPC, \
-      TAB, NG_Q, NG_W, NG_E, NG_R, NG_T,               NG_Y, NG_U, NG_I, NG_O, NG_P,  BSLS, \
-      LCTL,NG_A, NG_S, NG_D, NG_F, NG_G,               NG_H, NG_J, NG_K, NG_L, NG_SCLN,  RCTL, \
-      LSFT,NG_Z, NG_X, NG_C, NG_V, NG_B,    GRV,  QUOT,NG_N, NG_M, NG_COMM, NG_DOT, NG_SLSH,  RSFT, \
-      LOWER, LOWER, CAPS, LALT, LGUI, NG_SHFT, RABS,  RAEN, NG_SHFT, RGUI, RALT,  APP,LOWER, LOWER \
-      ),
-
   /* Colemak
    * ,-----------------------------------------.             ,-----------------------------------------.
    * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  | Bksp |
@@ -220,6 +198,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LSFT,   Z,    X,    C,    V,    F,    GRV,  QUOT,   B,    H,    J,    L, SLSH,  RSFT, \
       LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
       ),
+
+  // <naginata>
+  /* Naginata
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  |  BS  |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  \   |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  | Ctrl |
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * | Shift|   Z  |   X  |   C  |   V  |   B  |   `  |   '  |   N  |   M  |   ,  |   .  |   /  | Shift|
+   * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
+   * |Lower | Lower| Caps |  Alt |  GUI | SpSft|  BS  | Enter| SpSft| GUI  | Alt  | Menu |Lower |Lower |
+   * `-------------------------------------------------------------------------------------------------'
+   */
+  [_NAGINATA] = LAYOUT_kc( \
+      ESC,    1,    2,    3,    4,    5,                  6,    7,    8,    9,    0,  BSPC, \
+      TAB, NG_Q, NG_W, NG_E, NG_R, NG_T,               NG_Y, NG_U, NG_I, NG_O, NG_P,  BSLS, \
+      LCTL,NG_A, NG_S, NG_D, NG_F, NG_G,               NG_H, NG_J, NG_K, NG_L, NG_SCLN,  RCTL, \
+      LSFT,NG_Z, NG_X, NG_C, NG_V, NG_B,    GRV,  QUOT,NG_N, NG_M, NG_COMM, NG_DOT, NG_SLSH,  RSFT, \
+      LOWER, LOWER, CAPS, LALT, LGUI, NG_SHFT, RABS,  RAEN, NG_SHFT, RGUI, RALT,  APP,LOWER, LOWER \
+      ),
+  // </naginata>
 
   /* Keypad
    * ,-----------------------------------------.             ,-----------------------------------------.
