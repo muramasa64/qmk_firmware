@@ -133,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TAB,    Q,    W,    E,    R,    T,                  Y,    U,    I,    O,    P,  BSLS, \
       LCTL,   A,    S,    D,    F,    G,                  H,    J,    K,    L, SCLN,  RCTL, \
       LSFT,   Z,    X,    C,    V,    B,    GRV,  QUOT,   N,    M, COMM,  DOT, SLSH,  RSFT, \
-      LOWER, LOWER, CAPS, LALT, LGUI, SPC, NG_SHFT, NG_SHFT, SPC, RGUI, RALT,  APP,LOWER, LOWER \
+      LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS, RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
       ),
 
   // <naginata>
@@ -155,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TAB, NG_Q, NG_W, NG_E, NG_R, NG_T,               NG_Y, NG_U, NG_I, NG_O, NG_P,  BSLS, \
       LCTL,NG_A, NG_S, NG_D, NG_F, NG_G,               NG_H, NG_J, NG_K, NG_L, NG_SCLN,  RCTL, \
       LSFT,NG_Z, NG_X, NG_C, NG_V, NG_B,    GRV,  QUOT,NG_N, NG_M, NG_COMM, NG_DOT, NG_SLSH,  RSFT, \
-      LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
+      LOWER, LOWER, CAPS, LALT, LGUI, NG_SHFT, RABS,  RAEN, NG_SHFT, RGUI, RALT,  APP,LOWER, LOWER \
       ),
 
   /* Colemak
