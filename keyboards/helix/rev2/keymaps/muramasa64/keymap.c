@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |   `  |   '  |   N  |   M  |   ,  |   .  |   /  | Shift|
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Lower | Lower| Caps |  Alt |  GUI | Space|  BS  | Enter| Space| GUI  | Alt  | Menu |Lower |Lower |
+   * |KeyPad|Adjust|  Alt |  GUI |TMBSFT| Lower| SandS| SandS| Raise|TMBSFT| GUI  |  Alt | Menu |Lower |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT_kc( \
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TAB,    Q,    W,    E,    R,    T,                  Y,    U,    I,    O,    P,  BSLS, \
       LCTL,   A,    S,    D,    F,    G,                  H,    J,    K,    L, SCLN,  RCTL, \
       LSFT,   Z,    X,    C,    V,    B,    GRV,  QUOT,   N,    M, COMM,  DOT, SLSH,  RSFT, \
-      LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
+      MKPD, ADJ, LALT, LGUI, LTST, LOWER, SNDS,   SNDS, RAISE, RTST, RGUI, RALT, APP,  ENT \
       ),
 
   /* Colemak
@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |   `  |   '  |   K  |   M  |   ,  |   .  |   /  | Shift|
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Lower | Lower| Caps |  Alt |  GUI | Space|  BS  | Enter| Space| GUI  | Alt  | Menu |Lower |Lower |
+   * |KeyPad|Adjust|  Alt |  GUI |TMBSFT| Lower| SandS| SandS| Raise|TMBSFT| GUI  |  Alt | Menu |Lower |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_COLEMAK] = LAYOUT_kc( \
@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TAB,    Q,    W,    F,    P,    G,                  J,    L,    U,    Y, SCLN,  BSLS, \
       LCTL,   A,    R,    S,    T,    D,                  H,    N,    E,    I,    O,  RCTL, \
       LSFT,   Z,    X,    C,    V,    B,    GRV,  QUOT,   K,    M, COMM,  DOT, SLSH,  RSFT, \
-      LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
+      MKPD, ADJ, LALT, LGUI, LTST, LOWER, SNDS,   SNDS, RAISE, RTST, RGUI, RALT, APP,  ENT \
       ),
 
   /* Dvorak
@@ -156,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   F  |   `  |   '  |   B  |   H  |   J  |   L  |   /  | Shift|
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Lower | Lower| Caps |  Alt |  GUI | Space|  BS  | Enter| Space| GUI  | Alt  | Menu |Lower |Lower |
+   * |KeyPad|Adjust|  Alt |  GUI |TMBSFT| Lower| SandS| SandS| Raise|TMBSFT| GUI  |  Alt | Menu |Lower |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_EUCALYN] = LAYOUT_kc( \
@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TAB,    Q,    W, COMM,  DOT, SCLN,                  M,    R,    D,    Y,    P,  BSLS, \
       LCTL,   A,    O,    E,    I,    U,                  G,    T,    K,    S,    N,  RCTL, \
       LSFT,   Z,    X,    C,    V,    F,    GRV,  QUOT,   B,    H,    J,    L, SLSH,  RSFT, \
-      LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
+      MKPD, ADJ, LALT, LGUI, LTST, LOWER, SNDS,   SNDS, RAISE, RTST, RGUI, RALT, APP,  ENT \
       ),
 
   /* Keypad
