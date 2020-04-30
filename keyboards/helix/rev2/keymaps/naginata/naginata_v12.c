@@ -709,9 +709,6 @@ void naginata_on(void) {
   keycomb = 0UL;
   naginata_clear();
   layer_on(naginata_layer);
-
-  tap_code(KC_LANG1); // Mac
-  tap_code(KC_HENK); // Win
 }
 
 // 薙刀式をオフ
@@ -720,9 +717,6 @@ void naginata_off(void) {
   keycomb = 0UL;
   naginata_clear();
   layer_off(naginata_layer);
-
-  tap_code(KC_LANG2); // Mac
-  tap_code(KC_MHEN); // Win
 }
 
 // 薙刀式のon/off状態を返す
