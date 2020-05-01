@@ -14,10 +14,8 @@
   #include <print.h>
 #endif
 
-// <naginata>
 #include <naginata.h>
 NGKEYS naginata_keys;
-// </naginata>
 
 extern keymap_config_t keymap_config;
 
@@ -35,9 +33,7 @@ extern uint8_t is_master;
 enum layer_number {
     _QWERTY = 0,
     _DVORAK,
-    // <naginata>
     _NAGINATA,
-    // </naginata>
     _KEYPAD,
     _LOWER,
     _RAISE,
@@ -47,19 +43,14 @@ enum layer_number {
 enum custom_keycodes {
   QWERTY = NG_SAFE_RANGE,
   DVORAK,
-  // <naginata>
   NAGINATA,
-  // </naginata>
   KEYPAD,
   KC_xEISU,
   KC_xKANA,
   RGBRST,
-  // <naginata>
   LCTOGL,
-  // </naginata>
 };
 
-// <naginata>
 enum combo_events {
   NAGINATA_ON_CMB,
   NAGINATA_OFF_CMB,
@@ -88,7 +79,6 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
       break;
   }
 }
-// </naginata>
 
 //Macros
 #define KC_LOWER  MO(_LOWER)
@@ -148,7 +138,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LOWER, LOWER, CAPS, LALT, LGUI, SPC, RABS,  RAEN, SPC, RGUI, RALT,  APP,LOWER, LOWER \
       ),
 
-  // <naginata>
   /* Naginata
    * ,-----------------------------------------.             ,-----------------------------------------.
    * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  |  BS  |
@@ -169,7 +158,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LSFT,NG_Z, NG_X, NG_C, NG_V, NG_B,    GRV,  QUOT,NG_N, NG_M, NG_COMM, NG_DOT, NG_SLSH,  RSFT, \
       LOWER, LOWER, CAPS, LALT, LGUI, NG_SHFT, RABS,  RAEN, NG_SHFT, RGUI, RALT,  APP,LOWER, LOWER \
       ),
-  // </naginata>
 
   /* Keypad
    * ,-----------------------------------------.             ,-----------------------------------------.
@@ -330,9 +318,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }else{
           SEND_STRING(SS_LALT("`"));
         }
-        // <naginata>
         naginata_off();
-        // </naginata>
       } else {
         unregister_code(KC_LANG2);
       }
@@ -345,9 +331,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }else{
           SEND_STRING(SS_LALT("`"));
         }
-        // <naginata>
         naginata_on();
-        // </naginata>
       } else {
         unregister_code(KC_LANG1);
       }
@@ -361,20 +345,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       #endif
       break;
-    // <naginata>
     case LCTOGL:
       if (record->event.pressed) {
         mac_live_conversion_toggle();
       }
       return false;
       break;
-    // </naginata>
   }
-  // <naginata>
     if (!process_naginata(keycode, record)) {
       return false;
     }
-  // </naginata>
   return true;
 }
 
@@ -386,7 +366,6 @@ void matrix_init_user(void) {
     #ifdef SSD1306OLED
         iota_gfx_init(!has_usb());   // turns on the display
     #endif
-    // <naginata>
     set_naginata(_NAGINATA);
     #ifdef NAGINATA_EDIT_MAC
     set_unicode_input_mode(UC_OSX);
@@ -394,7 +373,6 @@ void matrix_init_user(void) {
     #ifdef NAGINATA_EDIT_WIN
     set_unicode_input_mode(UC_WINC);
     #endif
-    // </naginata>
 }
 
 
