@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   ;  |   Q  |   J  |   K  |   X  | EISU | KANA |   B  |   M  |   W  |   V  |   Z  |  `   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KeyPad|Adjust|  Alt |  GUI |TMBSFT| Lower| SandS| SandS| Raise|TMBSFT| GUI  |  Alt | Menu |Lower |
+   * |KeyPad|Adjust|  Alt |  GUI | Lower| Space| SandS| SandS| Space| Raise| GUI  |  Alt | Menu |Enter |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_DVORAK] = LAYOUT_kc( \
@@ -148,28 +148,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TAB,  QUOT, COMM,  DOT,    P,    Y,                  F,    G,    C,    R,    L, SLSH, \
       LCTL,    A,    O,    E,    U,    I,                  D,    H,    T,    N,    S, MINS, \
       LSFT, SCLN,    Q,    J,    K,    X, xEISU, xKANA,    B,    M,    W,    V,    Z,  GRV, \
-      MKPD, ADJ, LALT, LGUI, LTST, LOWER, SNDS,   SNDS, RAISE, RTST, RGUI, RALT, APP,  ENT \
+      MKPD, ADJ, LALT, LGUI, LOWER, SNDS, SNDS,   SNDS, SNDS, RAISE, RGUI, RALT,  APP,  ENT \
       ),
 
   /* Naginata
    * ,-----------------------------------------.             ,-----------------------------------------.
    * | ESC  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  |  BS  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  \   |
+   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  /   |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  | Ctrl |
+   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  |  -   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  | Shift|
+   * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  |  `   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Lower | Lower| Caps |  Alt |  GUI | SpSft|  BS  | Enter| SpSft| GUI  | Alt  | Menu |Lower |Lower |
+   * |KeyPad|Adjust|  Alt |  GUI | Lower| SandS| SandS| SandS| SpSft| Raise| GUI  |  Alt | Menu |Enter |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_NAGINATA] = LAYOUT_kc( \
       ESC,    1,    2,    3,    4,    5,                  6,    7,    8,    9,    0,  BSPC, \
-      TAB, NG_Q, NG_W, NG_E, NG_R, NG_T,               NG_Y, NG_U, NG_I, NG_O, NG_P,  BSLS, \
-      LCTL,NG_A, NG_S, NG_D, NG_F, NG_G,               NG_H, NG_J, NG_K, NG_L, NG_SCLN,  RCTL, \
-      LSFT,NG_Z, NG_X, NG_C, NG_V, NG_B, xEISU, xKANA, NG_N, NG_M, NG_COMM, NG_DOT, NG_SLSH,  RSFT, \
-      LOWER, LOWER, CAPS, LALT, LGUI, NG_SHFT, RABS,  RAEN, NG_SHFT, RGUI, RALT,  APP,LOWER, LOWER \
+      TAB, NG_Q, NG_W, NG_E, NG_R, NG_T,               NG_Y, NG_U, NG_I, NG_O, NG_P,  SLSH, \
+      LCTL,NG_A, NG_S, NG_D, NG_F, NG_G,               NG_H, NG_J, NG_K, NG_L, NG_SCLN,  MINS, \
+      LSFT,NG_Z, NG_X, NG_C, NG_V, NG_B, xEISU, xKANA, NG_N, NG_M, NG_COMM, NG_DOT, NG_SLSH, GRV, \
+      MKPD, ADJ, LALT, LGUI, LOWER, NG_SHFT, SNDS, SNDS, NG_SHFT, RAISE, RGUI, RALT, APP,  ENT \
       ),
   /* Keypad
    * ,-----------------------------------------.             ,-----------------------------------------.
