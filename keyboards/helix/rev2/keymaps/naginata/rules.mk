@@ -24,11 +24,9 @@ OLED_ENABLE = yes            # OLED_ENABLE
 # LED_ANIMATIONS = yes        # LED animations
 # IOS_DEVICE_ENABLE = no      # connect to IOS device (iPad,iPhone)
 
-# <naginata>
 COMBO_ENABLE = yes
 UNICODE_ENABLE = yes
 SRC += naginata_v12.c
-# </naginata>
 
 ifneq ($(strip $(HELIX)),)
   ifeq ($(findstring console,$(HELIX)), console)
