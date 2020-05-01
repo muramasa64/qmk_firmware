@@ -20,9 +20,13 @@ HELIX_ROWS = 5              # Helix Rows is 4 or 5
 OLED_ENABLE = yes            # OLED_ENABLE
 # LOCAL_GLCDFONT = no         # use each keymaps "helixfont.h" insted of "common/glcdfont.c"
 # LED_BACK_ENABLE = no        # LED backlight (Enable WS2812 RGB underlight.)
-LED_UNDERGLOW_ENABLE = no   # LED underglow (Enable WS2812 RGB underlight.)
-LED_ANIMATIONS = yes        # LED animations
+# LED_UNDERGLOW_ENABLE = no   # LED underglow (Enable WS2812 RGB underlight.)
+# LED_ANIMATIONS = yes        # LED animations
 IOS_DEVICE_ENABLE = yes      # connect to IOS device (iPad,iPhone)
+
+COMBO_ENABLE = yes
+UNICODE_ENABLE = yes
+SRC += naginata_v12.c
 
 ifneq ($(strip $(HELIX)),)
   ifeq ($(findstring console,$(HELIX)), console)
