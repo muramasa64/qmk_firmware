@@ -463,6 +463,7 @@ static void render_logo(struct CharacterMatrix *matrix) {
 
 static const char Qwerty_name[]  PROGMEM = " Qwerty";
 static const char Dvorak_name[]  PROGMEM = " Dvorak";
+static const char Naginata_name[]  PROGMEM = " Naginata";
 static const char Keypad_name[]  PROGMEM = " Keypad";
 
 static const char Lower_name[]   PROGMEM = ":Lower";
@@ -472,6 +473,7 @@ static const char Adjust_name[]  PROGMEM = ":Adjust";
 static const char *layer_names[] = {
     [_QWERTY] = Qwerty_name,
     [_DVORAK] = Dvorak_name,
+    [_NAGINATA] = Naginata_name,
     [_KEYPAD] = Keypad_name,
     [_LOWER]  = Lower_name,
     [_RAISE]  = Raise_name,
