@@ -49,6 +49,7 @@ static uint8_t ng_chrcount = 0; // 文字キー入力のカウンタ
 static bool is_naginata = false; // 薙刀式がオンかオフか
 static uint8_t naginata_layer = 0; // NG_*を配置しているレイヤー番号
 static uint32_t keycomb = 0UL; // 同時押しの状態を示す。32bitの各ビットがキーに対応する。
+static bool is_naginata_used = true; // 薙刀式を使うかどうか
 
 // 31キーを32bitの各ビットに割り当てる
 #define B_Q    (1UL<<0)
@@ -703,20 +704,28 @@ void set_naginata(uint8_t layer) {
   naginata_layer = layer;
 }
 
+void naginata_use_toggle(void) {
+  is_naginata_used =  !is_naginata_used;
+}
+
 // 薙刀式をオン
 void naginata_on(void) {
-  is_naginata = true;
-  keycomb = 0UL;
-  naginata_clear();
-  layer_on(naginata_layer);
+  if (is_naginata_used) {
+    is_naginata = true;
+    keycomb = 0UL;
+    naginata_clear();
+    layer_on(naginata_layer);
+  }
 }
 
 // 薙刀式をオフ
 void naginata_off(void) {
-  is_naginata = false;
-  keycomb = 0UL;
-  naginata_clear();
-  layer_off(naginata_layer);
+  if (is_naginata_used) {
+    is_naginata = false;
+    keycomb = 0UL;
+    naginata_clear();
+    layer_off(naginata_layer);
+  }
 }
 
 // 薙刀式のon/off状態を返す

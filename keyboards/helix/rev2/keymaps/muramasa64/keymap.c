@@ -49,6 +49,7 @@ enum custom_keycodes {
   KC_xKANA,
   RGBRST,
   LCTOGL,
+  NAGINATA_USE,
 };
 enum combo_events {
   NAGINATA_ON_CMB,
@@ -79,7 +80,6 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
   }
 }
 
-
 //Macros
 #define KC_LOWER  MO(_LOWER)
 #define KC_RAISE  MO(_RAISE)
@@ -105,6 +105,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
 #define KC_MHME   LCTL(KC_A)
 #define KC_MEND   LCTL(KC_E)
 #define ___       _______
+#define NGNTUSE   NAGINATA_USE
 
 #if MATRIX_ROWS == 10 // HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -237,7 +238,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Adjust (Lower + Raise)
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |Keypad|Dvorak|Colemk|Euclyn|Qwerty|             |Qwerty|Euclyn|Colemk|Dvorak|Keypad|      |
+   * |NGNTUS|Keypad|Dvorak|      |      |Qwerty|             |Qwerty|      |      |Dvorak|Keypad|NGNTUS|
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      | Reset|RGBRST|RGB ON|Aud on| Win  |             | Win  |Aud on|RGB ON|RGBRST|      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
@@ -249,7 +250,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADJUST] =  LAYOUT( \
-      XXXXXXX, KEYPAD,  DVORAK,  XXXXXXX, XXXXXXX,  QWERTY,          QWERTY,  XXXXXXX, XXXXXXX,  DVORAK,  KEYPAD, XXXXXXX, \
+      NGNTUSE, KEYPAD,  DVORAK,  XXXXXXX, XXXXXXX,  QWERTY,          QWERTY,  XXXXXXX, XXXXXXX,  DVORAK,  KEYPAD, NGNTUSE, \
       XXXXXXX, RESET,   RGBRST,  RGB_TOG,   AU_ON, AG_SWAP,          AG_SWAP,   AU_ON, RGB_TOG,  RGBRST, XXXXXXX, XXXXXXX, \
       RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD,  AU_OFF, AG_NORM,          AG_NORM,  AU_OFF, RGB_MOD, RGB_VAI, RGB_SAI, RGB_HUI, \
       RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX, XXXXXXX, ___,___, XXXXXXX, XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD, \
@@ -358,6 +359,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case LCTOGL:
       if (record->event.pressed) {
         mac_live_conversion_toggle();
+      }
+      return false;
+      break;
+    case NAGINATA_USE:
+      if (record->event.pressed) {
+        naginata_use_toggle();
       }
       return false;
       break;
