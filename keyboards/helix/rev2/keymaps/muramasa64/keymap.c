@@ -119,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  | EISU | KANA |   N  |   M  |   ,  |   .  |   /  | Shift|
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KeyPad|Adjust|  Alt |  GUI |TMBSFT| Lower| SandS| SandS| Raise|TMBSFT| GUI  |  Alt | Menu |Lower |
+   * |KeyPad|Adjust|  Alt |  GUI | Lower|TMBSFT| SandS| SandS|TMBSFT| Raise| GUI  |  Alt | Menu |Lower |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = LAYOUT_kc( \
@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TAB,    Q,    W,    E,    R,    T,                  Y,    U,    I,    O,    P,  BSLS, \
       LCTL,   A,    S,    D,    F,    G,                  H,    J,    K,    L, SCLN,  RCTL, \
       LSFT,   Z,    X,    C,    V,    B,  xEISU, xKANA,   N,    M, COMM,  DOT, SLSH,  RSFT, \
-      MKPD, ADJ, LALT, LGUI, LTST, LOWER, SNDS,   SNDS, RAISE, RTST, RGUI, RALT, APP,  ENT \
+      MKPD, ADJ, LALT, LGUI, LOWER, LTST, SNDS,   SNDS, RTST, RAISE, RGUI, RALT, APP,  ENT \
       ),
 
   /* Dvorak
@@ -140,7 +140,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * | Shift|   ;  |   Q  |   J  |   K  |   X  | EISU | KANA |   B  |   M  |   W  |   V  |   Z  |  `   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |KeyPad|Adjust|  Alt |  GUI | Lower| Space| SandS| SandS| Space| Raise| GUI  |  Alt | Menu |Enter |
+   * |KeyPad|Adjust|  Alt |  GUI | Lower|TMBSFT| SandS| SandS|TMBSFT| Raise| GUI  |  Alt | Menu |Lower |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_DVORAK] = LAYOUT_kc( \
@@ -148,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TAB,  QUOT, COMM,  DOT,    P,    Y,                  F,    G,    C,    R,    L, SLSH, \
       LCTL,    A,    O,    E,    U,    I,                  D,    H,    T,    N,    S, MINS, \
       LSFT, SCLN,    Q,    J,    K,    X, xEISU, xKANA,    B,    M,    W,    V,    Z,  GRV, \
-      MKPD, ADJ, LALT, LGUI, LOWER, SNDS, SNDS,   SNDS, SNDS, RAISE, RGUI, RALT,  APP,  ENT \
+      MKPD, ADJ, LALT, LGUI, LOWER, LTST, SNDS,   SNDS, RTST, RAISE, RGUI, RALT, APP,  ENT \
       ),
 
   /* Naginata
