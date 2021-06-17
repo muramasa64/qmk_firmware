@@ -30,12 +30,12 @@ enum layer_names {
 enum custom_keycodes {
   EISU = SAFE_RANGE,
   KANA,
-  QWERTY,
-  DVORAK,
   ADJUST,
   RGBRST
 };
 
+#define QWERTY DF(_QWERTY)
+#define DVORAK DF(_DVORAK)
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define KEYPAD MO(_KEYPAD)
