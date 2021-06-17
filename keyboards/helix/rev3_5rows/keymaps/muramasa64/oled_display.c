@@ -58,24 +58,30 @@ void render_status(void) {
   // Host Keyboard Layer Status
   oled_write_P(PSTR("Layer: "), false);
 
-  switch (get_highest_layer(layer_state)) {
+  switch (get_highest_layer(default_layer_state)) {
       case _QWERTY:
           oled_write_P(PSTR("Qwerty\n"), false);
           break;
       case _DVORAK:
           oled_write_P(PSTR("Dvorak\n"), false);
           break;
+      default:
+          // Or use the write_ln shortcut over adding '\n' to the end of your string
+          oled_write_ln_P(PSTR("Undefined"), false);
+  }
+
+  switch (get_highest_layer(layer_state)) {
       case _KEYPAD:
-          oled_write_P(PSTR("KeyPad\n"), false);
+          oled_write_P(PSTR("\n:KeyPad"), false);
           break;
       case _RAISE:
-          oled_write_P(PSTR("Raise\n"), false);
+          oled_write_P(PSTR("\n:Raise"), false);
           break;
       case _LOWER:
-          oled_write_P(PSTR("Lower\n"), false);
+          oled_write_P(PSTR("\n:Lower"), false);
           break;
       case _ADJUST:
-          oled_write_P(PSTR("Adjust\n"), false);
+          oled_write_P(PSTR("\n:Adjust"), false);
           break;
       default:
           // Or use the write_ln shortcut over adding '\n' to the end of your string

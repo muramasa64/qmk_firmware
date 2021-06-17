@@ -30,12 +30,12 @@ enum layer_names {
 enum custom_keycodes {
   EISU = SAFE_RANGE,
   KANA,
+  QWERTY,
+  DVORAK,
   ADJUST,
   RGBRST
 };
 
-#define QWERTY DF(_QWERTY)
-#define DVORAK DF(_DVORAK)
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define KEYPAD MO(_KEYPAD)
@@ -231,6 +231,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_LOWER);
         layer_off(_RAISE);
+      }
+      break;
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      break;
+    case DVORAK:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_DVORAK);
       }
       break;
     case RGBRST:
